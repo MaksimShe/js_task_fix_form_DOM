@@ -1,26 +1,20 @@
 'use strict';
 
-const placeholders = {
-  'sign-up-name': 'First name',
-  'sign-up-last-name': 'Last name',
-  'sign-up-email': 'Email',
-  'sign-up-password': 'Password',
-  'sign-in-email': 'Email',
-  'sign-in-password': 'Password',
-};
-
-Object.keys(placeholders).forEach((id) => {
-  const input = document.getElementById(id);
+document.querySelectorAll('.field-text').forEach((id) => {
+  const idName = id.id;
+  const textTemp = idName.split('-').slice(2).join(' ');
+  const textLabel = textTemp.charAt(0).toUpperCase() + textTemp.slice(1);
+  const input = document.getElementById(idName);
 
   if (input) {
-    input.setAttribute('placeholder', placeholders[id]);
+    input.setAttribute('placeholder', textLabel);
 
     const field = input.parentElement;
     const newLabel = document.createElement('label');
 
-    newLabel.setAttribute('for', placeholders[id]);
+    newLabel.setAttribute('for', idName);
     newLabel.className = 'field-label';
-    newLabel.textContent = placeholders[id];
+    newLabel.textContent = textLabel;
     field.prepend(newLabel);
   }
 });
